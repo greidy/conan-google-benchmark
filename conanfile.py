@@ -4,7 +4,7 @@ import os, shutil, glob
 
 class GoogleBenchmarkConan(ConanFile):
     name = 'benchmark'
-    version = '1.2.0'
+    version = '1.3.0'
     description = 'A microbenchmark support library.'
     url = 'http://github.com/jjones646/conan-google-benchmark'
     license = 'https://github.com/google/benchmark/blob/v1.2.0/LICENSE'
@@ -24,7 +24,7 @@ class GoogleBenchmarkConan(ConanFile):
         shutil.move('benchmark-{!s}'.format(self.version), 'benchmark')
 
     def build(self):
-        cmake = CMake(self.settings)
+        cmake = CMake(self)
         gen_extra_args = list()
         gen_extra_args += ['-DBUILD_SHARED_LIBS=OFF']   # only support static library with conan
         gen_extra_args += ['-DCMAKE_INSTALL_PREFIX:PATH="{!s}"'.format(self.conanfile_directory)]
